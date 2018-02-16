@@ -1,12 +1,12 @@
 package com.brouken.wear.payenabler;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.support.wearable.activity.WearableActivity;
 
-public class EnablerActivity extends WearableActivity {
+public class EnablerActivity extends Activity {
 
     //private final String PKG = "com.google.android.deskclock";
     private final String PKG = "com.google.android.apps.walletnfcrel";
