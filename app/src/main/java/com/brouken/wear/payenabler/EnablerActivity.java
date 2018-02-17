@@ -25,7 +25,8 @@ public class EnablerActivity extends Activity {
             if (app.enabled)
                 launchApp(pkg);
             else
-                enableApp(pkg);
+                //enableApp(pkg);
+                enableAppViaPlayStore(pkg);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -40,5 +41,11 @@ public class EnablerActivity extends Activity {
     private void launchApp(String pkg) {
         startActivity(getPackageManager().getLaunchIntentForPackage(pkg));
         finish();
+    }
+
+    private void enableAppViaPlayStore(String pkg) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + pkg));
+        //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + pkg))
+        startActivity(intent);
     }
 }
