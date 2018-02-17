@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 
 public class EnablerActivity extends Activity {
 
@@ -12,10 +13,11 @@ public class EnablerActivity extends Activity {
     private final String PKG = "com.google.android.apps.walletnfcrel";
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         launchOrEnable(PKG);
+        finish();
     }
 
     private void launchOrEnable(String pkg) {
@@ -25,7 +27,6 @@ public class EnablerActivity extends Activity {
             if (app.enabled)
                 launchApp(pkg);
             else
-                //enableApp(pkg);
                 enableAppViaPlayStore(pkg);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -40,7 +41,6 @@ public class EnablerActivity extends Activity {
 
     private void launchApp(String pkg) {
         startActivity(getPackageManager().getLaunchIntentForPackage(pkg));
-        finish();
     }
 
     private void enableAppViaPlayStore(String pkg) {
