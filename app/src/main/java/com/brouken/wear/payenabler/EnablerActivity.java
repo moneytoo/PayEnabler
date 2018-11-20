@@ -10,6 +10,9 @@ import android.os.Bundle;
 
 public class EnablerActivity extends Activity {
 
+    //private static final String PKG = "com.runtastic.android";
+    private static final String PKG = "com.google.android.apps.walletnfcrel";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,31 +21,26 @@ public class EnablerActivity extends Activity {
         finish();
     }
 
-    private void launchOrEnable(Context context) {
+    private void launchOrEnable(final Context context) {
         try {
-            ApplicationInfo app = getPackageManager().getApplicationInfo(Common.PKG, 0);
+            final ApplicationInfo app = getPackageManager().getApplicationInfo(PKG, 0);
 
             if (app.enabled)
-                Common.launchApp(context);
+                launchApp(context);
             else
-                enableAppViaPlayStore(Common.PKG);
+                enableAppViaPlayStore(PKG);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    /*
-    private void enableApp(String pkg) {
-        Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        intent.setData(Uri.parse("package:" + pkg));
-        startActivity(intent);
-    }
-    */
-
-    private void enableAppViaPlayStore(String pkg) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + pkg));
+    private void enableAppViaPlayStore(final String pkg) {
+        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + pkg));
         //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + pkg))
         startActivity(intent);
-        startService(new Intent(this, ExecutionService.class));
+    }
+
+    private void launchApp(final Context context) {
+        context.startActivity(context.getPackageManager().getLaunchIntentForPackage(PKG));
     }
 }
