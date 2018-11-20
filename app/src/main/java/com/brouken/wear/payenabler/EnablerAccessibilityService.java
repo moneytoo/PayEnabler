@@ -1,25 +1,29 @@
 package com.brouken.wear.payenabler;
 
 import android.accessibilityservice.AccessibilityService;
-import android.os.Handler;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 public class EnablerAccessibilityService extends AccessibilityService {
 
-    private Handler mHandler = new Handler();
-    private boolean callbackWaiting = false;
-
     @Override
     public void onAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        // FIXME: Work around issues after (some) Play Store fresh starts
-        if (!callbackWaiting) {
-            callbackWaiting = true;
-            mHandler.postDelayed(scan, 2000);
-        }
+        final AccessibilityNodeInfo topParent = getTopmostParent(accessibilityEvent.getSource());
+
+        if (isPayInHierarchy(topParent))
+            goThroughHierarchy(topParent);
     }
 
-    private void goThroughHierarchy(AccessibilityNodeInfo nodeInfo) {
+    private AccessibilityNodeInfo getTopmostParent(final AccessibilityNodeInfo node) {
+        final AccessibilityNodeInfo parent = node.getParent();
+
+        if (parent == null)
+            return node;
+        else
+            return getTopmostParent(parent);
+    }
+
+    private void goThroughHierarchy(final AccessibilityNodeInfo nodeInfo) {
         final int count = nodeInfo.getChildCount();
 
         for (int i = 0; i < count; i++) {
@@ -40,19 +44,7 @@ public class EnablerAccessibilityService extends AccessibilityService {
         }
     }
 
-    private Runnable scan = new Runnable() {
-        @Override
-        public void run() {
-            final AccessibilityNodeInfo root = getRootInActiveWindow();
-
-            if (isPayInHierarchy(root))
-                goThroughHierarchy(root);
-
-            callbackWaiting = false;
-        }
-    };
-
-    private void clickClickableParent(AccessibilityNodeInfo nodeInfo) {
+    private void clickClickableParent(final AccessibilityNodeInfo nodeInfo) {
         final AccessibilityNodeInfo parent = nodeInfo.getParent();
 
         if (parent == null)
@@ -64,7 +56,7 @@ public class EnablerAccessibilityService extends AccessibilityService {
             clickClickableParent(parent);
     }
 
-    private boolean isPayInHierarchy(AccessibilityNodeInfo nodeInfo) {
+    private boolean isPayInHierarchy(final AccessibilityNodeInfo nodeInfo) {
         if (isPayInNode(nodeInfo))
             return true;
 
@@ -87,7 +79,7 @@ public class EnablerAccessibilityService extends AccessibilityService {
         return false;
     }
 
-    private boolean isPayInNode(AccessibilityNodeInfo nodeInfo) {
+    private boolean isPayInNode(final AccessibilityNodeInfo nodeInfo) {
         final CharSequence sequence = nodeInfo.getText();
         if (sequence != null && sequence.toString().equals("Google Pay")) {
         //if (sequence != null && sequence.toString().startsWith("Runtastic Running App")) {
