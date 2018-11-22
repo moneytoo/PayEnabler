@@ -38,7 +38,31 @@ public class EnablerAccessibilityService extends AccessibilityService {
             if (sequence != null) {
                 final String text = sequence.toString();
 
-                if (text.equals("Enable"))
+                if (text.equals("Enable")
+                        /* cs */ || text.equals("Aktivovat")
+                        /* da */ || text.equals("Aktivér")
+                        /* de */ || text.equals("Aktivieren")
+                        /* es */ || text.equals("Habilitar")
+                        /* es-us */ || text.equals("Activar")
+                        /* fi */ || text.equals("Salli")
+                        /* fr */ || text.equals("Activer")
+                        /* hi */ || text.equals("सक्षम करें")
+                        /* in */ || text.equals("Aktifkan")
+                        /* it */ || text.equals("Attiva")
+                        /* ja */ || text.equals("有効にする")
+                        /* ko */ || text.equals("사용")
+                        /* nb */ || text.equals("Slå på")
+                        /* nl */ || text.equals("Inschakelen")
+                        /* pl */ || text.equals("Włącz")
+                        /* pt */ || text.equals("Ativar")
+                        /* ru */ || text.equals("Включить")
+                        /* sv */ || text.equals("Aktivera")
+                        /* th */ || text.equals("เปิดใช้งาน")
+                        /* tr */ || text.equals("Etkinleştir")
+                        /* vi */ || text.equals("Bật")
+                        /* zh-cn */ || text.equals("启用")
+                        /* zh-hk */ || text.equals("啟用")
+                        /* zh-tw */ || text.equals("啟用"))
                     clickClickableParent(child);
             }
         }
