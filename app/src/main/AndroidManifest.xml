@@ -38,15 +38,9 @@
                 android:resource="@xml/serviceconfig" />
         </service>
 
-        <receiver android:name=".EnableReceiver"
-            android:exported="true"
-            android:enabled="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_CHANGED" />
-                <data android:scheme="package" android:sspPrefix="com.google.android.apps.walletnfcrel" />
-            </intent-filter>
-        </receiver>
-
+        <service
+            android:name=".ExecutionService"
+            android:exported="false" />
     </application>
 
 </manifest>

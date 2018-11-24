@@ -11,7 +11,7 @@ import android.os.Bundle;
 public class EnablerActivity extends Activity {
 
     //private static final String PKG = "com.runtastic.android";
-    private static final String PKG = "com.google.android.apps.walletnfcrel";
+    public static final String PKG = "com.google.android.apps.walletnfcrel";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +38,10 @@ public class EnablerActivity extends Activity {
         final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + pkg));
         //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + pkg))
         startActivity(intent);
+        startService(new Intent(this, ExecutionService.class));
     }
 
-    private void launchApp(final Context context) {
+    public static void launchApp(final Context context) {
         context.startActivity(context.getPackageManager().getLaunchIntentForPackage(PKG));
     }
 }
