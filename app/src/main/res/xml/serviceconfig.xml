@@ -3,6 +3,7 @@
 TODO: Remove unnecessary accessibility flags
 -->
 <accessibility-service
+    android:description="@string/as_desc"
     android:accessibilityEventTypes="typeWindowStateChanged|typeWindowContentChanged|typeWindowsChanged"
     android:packageNames="com.android.vending"
     android:accessibilityFeedbackType="feedbackGeneric"

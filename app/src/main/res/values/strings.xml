@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pay Enabler</string>
+    <string name="as_desc">Automate enabling of payment app in store</string>
 </resources>

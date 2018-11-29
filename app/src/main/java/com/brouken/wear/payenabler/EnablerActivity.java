@@ -29,16 +29,24 @@ public class EnablerActivity extends Activity {
                 launchApp(context);
             else
                 enableAppViaPlayStore(PKG);
+
+            return;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+
+        openInPlayStore(PKG);
     }
 
-    private void enableAppViaPlayStore(final String pkg) {
+    private void openInPlayStore(final String pkg) {
         final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + pkg));
         //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + pkg))
         startActivity(intent);
+    }
+
+    private void enableAppViaPlayStore(final String pkg) {
         startService(new Intent(this, ExecutionService.class));
+        openInPlayStore(pkg);
     }
 
     public static void launchApp(final Context context) {
