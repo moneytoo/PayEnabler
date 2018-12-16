@@ -38,31 +38,31 @@ public class EnablerAccessibilityService extends AccessibilityService {
             if (sequence != null) {
                 final String text = sequence.toString();
 
+                // common_google_play_services_enable_button
                 if (text.equals("Enable")
-                        /* cs */ || text.equals("Aktivovat")
+                        /* cs */ || text.equals("Aktivovat") || text.equals("Povolit")
                         /* da */ || text.equals("Aktivér")
                         /* de */ || text.equals("Aktivieren")
                         /* es */ || text.equals("Habilitar")
                         /* es-us */ || text.equals("Activar")
-                        /* fi */ || text.equals("Salli")
+                        /* fi */ || text.equals("Salli") || text.equals("Ota käyttöön")
                         /* fr */ || text.equals("Activer")
-                        /* hi */ || text.equals("सक्षम करें")
+                        /* hi */ || text.equals("सक्षम करें") || text.equals("चालू कर")
                         /* in */ || text.equals("Aktifkan")
                         /* it */ || text.equals("Attiva")
                         /* ja */ || text.equals("有効にする")
-                        /* ko */ || text.equals("사용")
+                        /* ko */ || text.equals("사용") || text.equals("사용 설정")
                         /* nb */ || text.equals("Slå på")
                         /* nl */ || text.equals("Inschakelen")
                         /* pl */ || text.equals("Włącz")
                         /* pt */ || text.equals("Ativar")
                         /* ru */ || text.equals("Включить")
                         /* sv */ || text.equals("Aktivera")
-                        /* th */ || text.equals("เปิดใช้งาน")
+                        /* th */ || text.equals("เปิดใช้งาน") || text.equals("เปิดใช้")
                         /* tr */ || text.equals("Etkinleştir")
                         /* vi */ || text.equals("Bật")
                         /* zh-cn */ || text.equals("启用")
-                        /* zh-hk */ || text.equals("啟用")
-                        /* zh-tw */ || text.equals("啟用"))
+                        /* zh-hk, zh-tw */ || text.equals("啟用"))
                     clickClickableParent(child);
             }
         }
