@@ -50,7 +50,7 @@ public class EnablerAccessibilityService extends AccessibilityService {
                         /* hi */ || text.equals("सक्षम करें") || text.equals("चालू कर")
                         /* in */ || text.equals("Aktifkan")
                         /* it */ || text.equals("Attiva")
-                        /* ja */ || text.equals("有効にする")
+                        /* ja */ || text.equals("有効化")
                         /* ko */ || text.equals("사용") || text.equals("사용 설정")
                         /* nb */ || text.equals("Slå på")
                         /* nl */ || text.equals("Inschakelen")
